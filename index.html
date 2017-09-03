@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://fonts.googleapis.com/css?family=Barrio" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Kumar+One" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Metamorphous" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/3.3.2/masonry.pkgd.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css">
+    <script type="text/javascript" language="javascript" src="jquery-1.8.2.min.js"></script>
+    <script src="carousels/jquery.carouFredSel-6.0.4-packed.js"></script>	
+    <link rel="stylesheet" href="src/main.css">
+    <title>MySite </title>
+    <script type="text/javascript">
+			$(function() {
+				var left = {
+					imgFront	: -450,
+					imgBack		: -350,
+					h3			: -300,
+					p			: -275,
+					a			: -200
+				}
+				var current = {
+					imgFront	: 30,
+					imgBack		: 300,
+					h3			: 675,
+					p			: 675,
+					a			: 700
+				}
+				var right = {
+					imgFront	: 990,
+					imgBack		: 990,
+					h3			: 990,
+					p			: 990,
+					a			: 990
+				}
+				
+				var isScrolling = false;
+
+				$('#carousel').carouFredSel({
+					scroll	: {
+						duration		: 0,
+						timeoutDuration	: 3000
+					},
+					auto	: false,
+					prev	: {
+						button		: '#prev',
+						conditions	: function() {
+							return (!isScrolling);
+						},
+						onBefore	: function( data ) {
+							isScrolling = true;
+
+							$(this).delay(900);
+
+							data.items.old.find('img.img-front')
+								.delay(400)
+								.animate({
+									left: right.imgFront
+								});
+
+							data.items.old.find('img.img-back')
+								.delay(300)
+								.animate({
+									left: right.imgBack
+								});
+
+							data.items.old.find('h3')
+								.delay(200)
+								.animate({
+									left: right.h3
+								});
+
+							data.items.old.find('p')
+								.delay(100)
+								.animate({
+									left: right.p
+								});
+
+							data.items.old.find('a')
+								.animate({
+									left: right.a
+								});
+						},
+						onAfter: function( data ) {
+							data.items.old.find('img.img-front')
+								.css({
+									left: current.imgFront
+								});
+
+							data.items.old.find('img.img-back')
+								.css({
+									left: current.imgBack
+								});
+
+							data.items.old.find('h3')
+								.animate({
+									left: current.h3
+								});
+
+							data.items.old.find('p')
+								.css({
+									left: current.p
+								});
+
+							data.items.old.find('a')
+								.css({
+									left: current.a
+								});
+
+							data.items.visible.find('img.img-front')
+								.css({
+									left: left.imgFront
+								}).delay(400)
+								.animate({
+									left: current.imgFront
+								}, function() {
+									isScrolling = false;
+								});
+
+							data.items.visible.find('img.img-back')
+								.css({
+									left: left.imgBack
+								}).delay(300)
+								.animate({
+									left: current.imgBack
+								});
+
+							data.items.visible.find('h3')
+								.css({
+									left: left.h3
+								}).delay(200)
+								.animate({
+									left: current.h3
+								});
+
+							data.items.visible.find('p')
+								.css({
+									left: left.p
+								}).delay(100)
+								.animate({
+									left: current.p
+								});
+
+							data.items.visible.find('a')
+								.css({
+									left: left.a
+								})
+								.animate({
+									left: current.a
+								});
+						}
+					},
+					next	: {
+						button		: '#next',
+						conditions	: function() {
+							return (!isScrolling);
+						},
+						onBefore	: function( data ) {
+							isScrolling = true;
+
+							$(this).delay(900);	//	delay the onafter
+
+							data.items.old.find('img.img-front')
+								.animate({
+									left: left.imgFront
+								});
+
+							data.items.old.find('img.img-back')
+								.delay(100)
+								.animate({
+									left: left.imgBack
+								});
+
+							data.items.old.find('h3')
+								.delay(200)
+								.animate({
+									left: left.h3
+								});
+
+							data.items.old.find('p')
+								.delay(300)
+								.animate({
+									left: left.p
+								});
+
+							data.items.old.find('a')
+								.delay(400)
+								.animate({
+									left: left.a
+								});
+						},
+						onAfter: function( data ) {
+							data.items.old.find('img.img-front')
+								.css({
+									left: current.imgFront
+								});
+
+							data.items.old.find('img.img-back')
+								.css({
+									left: current.imgBack
+								});
+
+							data.items.old.find('h3')
+								.animate({
+									left: current.h3
+								});
+
+							data.items.old.find('p')
+								.css({
+									left: current.p
+								});
+
+							data.items.old.find('a')
+								.css({
+									left: current.a
+								});
+
+							data.items.visible.find('img.img-front')
+								.css({
+									left: right.imgFront
+								})
+								.animate({
+									left: current.imgFront
+								});
+
+							data.items.visible.find('img.img-back')
+								.css({
+									left: right.imgBack
+								}).delay(100)
+								.animate({
+									left: current.imgBack
+								});
+
+							data.items.visible.find('h3')
+								.css({
+									left: right.h3
+								}).delay(200)
+								.animate({
+									left: current.h3
+								});
+
+							data.items.visible.find('p')
+								.css({
+									left: right.p
+								}).delay(300)
+								.animate({
+									left: current.p
+								});
+
+							data.items.visible.find('a')
+								.css({
+									left: right.a
+								}).delay(400)
+								.animate({
+									left: current.a
+								}, function() {
+									isScrolling = false;
+								});
+						}
+					}
+				});
+			});
+		</script>
+   
+</head>
+<body>
+<div id="app"></div>
+<script src="dist/main.js"></script>
+
+    <div id="wrapper">
+			<div id="bg"></div>
+			<div id="carousel">
+				<div>
+					<img class="img-front" src="carousels/imgMain/haytararutyun.png" alt="dot1" width="450" height="350" />
+					<img class="img-back" src="carousels/imgMain/haytararutyun2.png" alt="dot2" width="350" height="275" />
+					<h3>Հայտարարություններ</h3>
+					<p>Ավելացրեք ձեր հայտարարությունները մեր կայքում առավել հեշտացված եղանակով միանգամայն անվճար</p>
+					<a href="#" target="_blank">Դիտել &raquo;</a>
+				</div>
+				<div>
+					<img class="img-front" src="carousels/imgMain/film.jpg" alt="cfs1" width="450" height="350" />
+					<img class="img-back" src="carousels/imgMain/mult.jpg" alt="cfs2" width="350" height="275" />
+					<h3>Ֆիլմեր և մուլտֆիլմներ</h3>
+					<p>Ձեր սիրած ֆիլմերն ու Մուլտֆիլմները մեր կայքում </p>
+					<a href="#" target="_blank">Դիտել &raquo;</a>
+				</div>
+				<div>
+					<img class="img-front" src="carousels/imgMain/did_you_know.png" alt="val1" width="450" height="350" />
+					<img class="img-back" src="carousels/imgMain/jamanc.jpg" alt="val2" width="350" height="275" />
+					<h3>Ժամանցային</h3>
+					<p>Անցկացրեք ձեր ազատ ժամանակը մեր հետ և մենք այն կդարձնենք առավել հետաքրքիր</p>
+					<a href="#" target="_blank"> Դիտել &raquo;</a>
+				</div>
+			</div>
+			<a id="prev" href="#"><span></span></a>
+			<a id="next" href="#"><span></span></a>
+		</div>   
+</body>
+</html>
